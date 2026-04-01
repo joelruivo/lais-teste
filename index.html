@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Laís Morandin | Psicóloga Clínica</title>
+
+  <!-- =============================================
+       FONTES — altere as importações e variáveis
+       abaixo para trocar a tipografia do site
+  ============================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================
+       PALETA DE CORES — altere os valores abaixo
+       para mudar toda a identidade visual do site
+    ============================================== */
+    :root {
+      --bg-deep:        #1a1410;
+      --bg-mid:         #221c15;
+      --bg-card:        #2b2219;
+      --accent-warm:    #c8a46e;
+      --accent-muted:   #8c6e4b;
+      --text-primary:   #f0e8dc;
+      --text-secondary: #b09a82;
+      --text-dim:       #6b5a47;
+      --divider:        #3a2e22;
+      --cta-bg:         #c8a46e;
+      --cta-text:       #1a1410;
+      --cta-hover:      #dbb87e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg-deep);
+      color: var(--text-primary);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.6;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+    }
+
+    /* =============================================
+       NAVEGAÇÃO
+    ============================================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(26,20,16,0.97) 0%, transparent 100%);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent-warm); }
+
+    /* =============================================
+       HERO
+       Imagem de fundo: mulher contemplativa na janela
+       Altere a URL em #hero::after para trocar a imagem
+    ============================================== */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Imagem de fundo do hero — mulher contemplativa */
+    #hero .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://emplacarvoce.com.br/wp-content/uploads/2024/07/Lais-Morandin_-foto-atual.png?auto=compress&cs=tinysrgb&w=1400');
+      background-size: cover;
+      background-position: center right;
+      opacity: 0.12;
+      filter: sepia(40%) brightness(0.7);
+    }
+    #hero .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--bg-deep) 40%, transparent 100%);
+    }
+
+    /* Luz ambiente */
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: -10%; right: -5%;
+      width: 55%; height: 80%;
+      background: radial-gradient(ellipse at center, rgba(200,164,110,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      padding-top: 6rem;
+      max-width: 560px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-eyebrow::before { content: ''; width: 2rem; height: 1px; background: var(--accent-warm); }
+    .hero-title { font-size: clamp(3rem, 5vw, 5.5rem); color: var(--text-primary); margin-bottom: 0.5rem; }
+    .hero-title em { color: var(--accent-warm); font-style: italic; }
+    .hero-subtitle {
+      font-family: 'Jost', sans-serif;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.06em;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+    .hero-text { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 3rem; max-width: 440px; line-height: 1.85; }
+
+    .btn-cta {
+      display: inline-block;
+      background: var(--cta-bg);
+      color: var(--cta-text);
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-cta:hover { background: var(--cta-hover); transform: translateY(-2px); }
+
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid var(--accent-muted);
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 0.9rem 2.2rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: border-color 0.3s, color 0.3s;
+      margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: var(--accent-warm); color: var(--accent-warm); }
+
+    /* =============================================
+       FOTO DO HERO
+       Substitua a imagem abaixo pela foto real da Laís
+       quando disponível. URL atual = placeholder atmosférico.
+    ============================================== */
+    .hero-image {
+      position: relative;
+      height: 85vh;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 2;
+    }
+    .hero-photo-frame {
+      width: 100%;
+      max-width: 420px;
+      height: 80%;
+      position: relative;
+    }
+    .hero-photo-frame::before {
+      content: '';
+      position: absolute;
+      top: -1.5rem; left: -1.5rem; right: 1.5rem; bottom: 1.5rem;
+      border: 1px solid var(--divider);
+      z-index: -1;
+    }
+
+    /* FOTO PRINCIPAL — substitua o src abaixo pela foto real da Laís */
+    .hero-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      filter: sepia(15%) brightness(0.85);
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 2rem; left: -2rem;
+      background: var(--bg-deep);
+      border: 1px solid var(--divider);
+      padding: 1rem 1.5rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.05em;
+      line-height: 1.6;
+    }
+    .hero-badge strong { display: block; color: var(--accent-warm); font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; margin-bottom: 0.2rem; }
+
+    /* Seções */
+    section { padding: 6rem 4rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent-warm); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.2rem;
+    }
+    .section-label::before { content: ''; width: 1.5rem; height: 1px; background: var(--accent-warm); }
+    .section-title { font-size: clamp(2rem, 3.5vw, 3.2rem); color: var(--text-primary); margin-bottom: 2rem; }
+    .divider-line { width: 100%; height: 1px; background: var(--divider); }
+
+    /* =============================================
+       SOBRE
+       Imagem lateral: mulher pensativa, luz de janela
+    ============================================== */
+    #sobre { background: var(--bg-mid); }
+    .sobre-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; align-items: start; }
+    .sobre-aside { position: sticky; top: 7rem; }
+
+    /* FOTO DA SEÇÃO SOBRE
+       Substitua o src pela foto real da Laís quando disponível */
+    .sobre-photo-wrap {
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      border: 1px solid var(--divider);
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .sobre-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      filter: sepia(20%) brightness(0.8) contrast(1.05);
+      transition: transform 0.6s ease;
+    }
+    .sobre-photo:hover { transform: scale(1.03); }
+
+    .sobre-crp {
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-dim); border-top: 1px solid var(--divider); padding-top: 1rem;
+    }
+    .sobre-text p { color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.05rem; }
+    .sobre-text p:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
+      color: var(--text-primary); line-height: 1.5;
+    }
+
+    /* =============================================
+       FAIXA IMAGEM TOTAL — entre seções
+       Imagem: caminho na floresta escura com luz no fim
+       Representa a jornada analítica
+    ============================================== */
+    .full-image-band {
+      width: 100%;
+      height: 420px;
+      position: relative;
+      overflow: hidden;
+    }
+    .full-image-band img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      filter: brightness(0.5) sepia(30%);
+      display: block;
+    }
+    .full-image-band .band-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, var(--bg-mid) 0%, transparent 25%, transparent 75%, var(--bg-deep) 100%);
+    }
+    .full-image-band .band-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .band-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-style: italic;
+      color: var(--text-primary);
+      max-width: 680px;
+      line-height: 1.5;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+    }
+    .band-quote em { color: var(--accent-warm); font-style: normal; }
+
+    /* =============================================
+       PSICANÁLISE
+       Cards com imagem: iceberg e oceano profundo
+    ============================================== */
+    #psicanalise { position: relative; overflow: hidden; }
+    #psicanalise::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 80%; height: 50%;
+      background: radial-gradient(ellipse at center bottom, rgba(200,164,110,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .psicanalise-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-bottom: 5rem; align-items: center; }
+    .psicanalise-intro-text { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.85; }
+
+    /* IMAGEM DO ICEBERG — representa o inconsciente */
+    .iceberg-wrap {
+      position: relative;
+      height: 360px;
+      overflow: hidden;
+      border: 1px solid var(--divider);
+    }
+    .iceberg-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.65) sepia(20%) hue-rotate(180deg) saturate(0.7);
+      display: block;
+    }
+    .iceberg-wrap .iceberg-label {
+      position: absolute;
+      bottom: 1.5rem; left: 1.5rem;
+      font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent-warm);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .iceberg-wrap .iceberg-label::before { content: ''; width: 1rem; height: 1px; background: var(--accent-warm); }
+
+    /* Cards de conceitos */
+    .conceitos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .conceito-card {
+      background: var(--bg-card);
+      border: 1px solid var(--divider);
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .conceito-card:hover { border-color: var(--accent-muted); }
+
+    /* Imagem no topo de cada card */
+    .conceito-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.6) sepia(25%);
+      transition: transform 0.5s ease, filter 0.4s;
+    }
+    .conceito-card:hover .conceito-img { transform: scale(1.04); filter: brightness(0.7) sepia(15%); }
+
+    .conceito-body { padding: 1.75rem; }
+    .conceito-numero { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--accent-warm); opacity: 0.3; line-height: 1; margin-bottom: 0.75rem; }
+    .conceito-titulo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--text-primary); margin-bottom: 0.75rem; }
+    .conceito-texto { font-size: 0.93rem; color: var(--text-secondary); line-height: 1.7; }
+
+    /* =============================================
+       ATENDIMENTO
+    ============================================== */
+    #atendimento { background: var(--bg-mid); }
+    .atendimento-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .atendimento-steps { display: flex; flex-direction: column; }
+    .step { display: flex; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--divider); }
+    .step:first-child { padding-top: 0; }
+    .step-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--accent-warm); opacity: 0.4; min-width: 2.5rem; line-height: 1; padding-top: 0.25rem; }
+    .step-titulo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0.5rem; }
+    .step-texto { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.75; }
+    .atendimento-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .info-card { background: var(--bg-card); border: 1px solid var(--divider); padding: 1.75rem; }
+    .info-card-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 0.5rem; }
+    .info-card-value { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--text-primary); }
+    .info-card-desc { font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.4rem; line-height: 1.6; }
+
+    /* =============================================
+       FAIXA IMAGEM 2 — água calma, reflexo
+       Representa o processo analítico: superfície e profundidade
+    ============================================== */
+    .water-band {
+      width: 100%;
+      height: 320px;
+      position: relative;
+      overflow: hidden;
+    }
+    .water-band img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.45) sepia(30%) saturate(0.8);
+      display: block;
+    }
+    .water-band .band-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, var(--bg-mid) 0%, transparent 30%, transparent 70%, var(--bg-deep) 100%);
+    }
+    .water-band .band-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      gap: 1.5rem;
+    }
+    .water-text-label {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-warm);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .water-text-label::before, .water-text-label::after { content: ''; width: 2rem; height: 1px; background: var(--accent-warm); }
+    .water-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      color: var(--text-primary);
+      font-style: italic;
+      line-height: 1.3;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.9);
+    }
+
+    /* =============================================
+       FAQ
+    ============================================== */
+    #faq {}
+    .faq-grid { display: grid; grid-template-columns: 1fr 1.8fr; gap: 5rem; align-items: start; }
+    .faq-intro { position: sticky; top: 7rem; }
+    .faq-intro p { color: var(--text-secondary); font-size: 1rem; margin-top: 1.5rem; line-height: 1.8; }
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item { border-bottom: 1px solid var(--divider); overflow: hidden; }
+    .faq-question {
+      width: 100%; background: none; border: none;
+      color: var(--text-primary); font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; text-align: left; padding: 1.75rem 0;
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      gap: 1rem; transition: color 0.3s;
+    }
+    .faq-question:hover { color: var(--accent-warm); }
+    .faq-icon { color: var(--accent-warm); font-size: 1.2rem; transition: transform 0.3s; flex-shrink: 0; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-answer { max-height: 400px; }
+    .faq-answer-inner { padding-bottom: 1.75rem; color: var(--text-secondary); font-size: 0.97rem; line-height: 1.8; }
+
+    /* =============================================
+       CONTATO
+    ============================================== */
+    #contato { position: relative; overflow: hidden; }
+
+    /* Imagem de fundo sutil na seção de contato — oceano escuro */
+    #contato .contato-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=1400');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.08;
+      filter: sepia(40%);
+    }
+
+    .contato-inner { max-width: 700px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+    .contato-title { font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+    .contato-title em { color: var(--accent-warm); font-style: italic; }
+    .contato-text { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; margin-bottom: 3rem; }
+    .contato-links { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-top: 3rem; }
+    .contato-link-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      color: var(--text-secondary); text-decoration: none;
+      font-size: 0.88rem; letter-spacing: 0.06em; transition: color 0.3s;
+    }
+    .contato-link-item:hover { color: var(--accent-warm); }
+    .contato-link-item span { width: 1.5rem; height: 1px; background: currentColor; }
+
+    /* =============================================
+       FOOTER
+    ============================================== */
+    footer {
+      padding: 2.5rem 4rem;
+      border-top: 1px solid var(--divider);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.06em;
+    }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: var(--text-secondary); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* =============================================
+       ANIMAÇÕES
+    ============================================== */
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================== */
+    @media (max-width: 900px) {
+      nav { padding: 1.5rem 2rem; }
+      .nav-links { display: none; }
+      section { padding: 5rem 2rem; }
+      #hero { grid-template-columns: 1fr; padding: 8rem 2rem 4rem; gap: 3rem; min-height: auto; }
+      .hero-image { height: 70vw; }
+      .hero-badge { left: 0; bottom: 1rem; }
+      .sobre-grid, .psicanalise-intro, .atendimento-grid, .faq-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .sobre-aside { position: static; }
+      .faq-intro { position: static; }
+      .conceitos-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .full-image-band { height: 280px; }
+      .water-band { height: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       NAVEGAÇÃO — altere links e nome do logo
+  ============================================== -->
+  <nav>
+    <a href="#hero" class="nav-logo">Laís Morandin</a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#psicanalise">Psicanálise</a></li>
+      <li><a href="#atendimento">Atendimento</a></li>
+      <li><a href="#faq">Dúvidas</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- =============================================
+       HERO — primeira dobra
+       Altere: título, subtítulo, texto, links do WhatsApp
+       FOTO: substitua o src do hero-photo pela foto real da Laís
+  ============================================== -->
+  <section id="hero">
+    <!-- Imagem de fundo atmosférica — mulher contemplativa -->
+    <div class="hero-bg"></div>
+
+    <div class="hero-content">
+      <!-- Altere o texto da eyebrow abaixo -->
+      <div class="hero-eyebrow">Psicóloga Clínica · Psicanálise</div>
+
+      <!-- TÍTULO PRINCIPAL -->
+      <h1 class="hero-title">Laís<br><em>Morandin</em></h1>
+
+      <p class="hero-subtitle">Atendimento individual · Online · Todo o Brasil</p>
+
+      <p class="hero-text">
+        Um espaço para o que não consegue ser dito em nenhum outro lugar.
+        Para quem sente que algo insiste — sem saber exatamente o quê.
+      </p>
+
+      <!-- Altere o link do WhatsApp: https://wa.me/55DDDNÚMERO?text=MENSAGEM -->
+      <a href="https://wa.me/5521995485887?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20entrevista%20inicial" class="btn-cta" target="_blank">
+        Agendar primeira sessão
+      </a>
+      <a href="#sobre" class="btn-outline">Saiba mais</a>
+    </div>
+
+    <div class="hero-image">
+      <div class="hero-photo-frame">
+
+        <!-- =============================================
+             FOTO PRINCIPAL DO HERO
+             Substitua o src abaixo pela foto real da Laís.
+             Enquanto não tiver, está usando imagem atmosférica.
+             Exemplo: <img class="hero-photo" src="foto-lais.jpg" alt="Laís Morandin">
+        ============================================== -->
+        <img
+          class="hero-photo"
+          src="https://emplacarvoce.com.br/wp-content/uploads/2024/07/Lais-Morandin_-foto-atual.png?auto=compress&cs=tinysrgb&w=800"
+          alt="Laís Morandin, psicóloga clínica"
+        />
+
+        <!-- Altere o CRP aqui -->
+        <div class="hero-badge">
+          <strong>CRP XXXZZZWWW</strong>
+          Psicóloga Clínica · UFRJ<br>
+          Orientada pela Psicanálise
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-line"></div>
+
+
+  <!-- =============================================
+       SOBRE — bio da psicóloga
+       Altere: textos biográficos, CRP, foto
+       FOTO: substitua src do sobre-photo pela foto real da Laís
+  ============================================== -->
+  <section id="sobre">
+    <div class="section-inner">
+      <div class="sobre-grid">
+
+        <div class="sobre-aside fade-up">
+
+          <!-- =============================================
+               FOTO DA SEÇÃO SOBRE
+               Substitua o src abaixo pela foto real da Laís.
+          ============================================== -->
+          <div class="sobre-photo-wrap">
+            <img
+              class="sobre-photo"
+              src="https://emplacarvoce.com.br/wp-content/uploads/2024/07/Lais-Morandin_-foto-atual.png?auto=compress&cs=tinysrgb&w=600"
+              alt="Laís Morandin"
+            />
+          </div>
+
+          <!-- Altere o CRP real aqui -->
+          <div class="sobre-crp">
+            CRP XXXZZZWWW · Psicóloga Clínica<br>
+            UFRJ · Rio de Janeiro
+          </div>
+        </div>
+
+        <div class="sobre-text fade-up">
+          <div class="section-label">Sobre mim</div>
+
+          <!-- PARÁGRAFO DE ABERTURA — altere conforme tom desejado -->
+          <p>Sou Laís Morandin, psicóloga clínica formada pela Universidade Federal do Rio de Janeiro, orientada pela Psicanálise.</p>
+
+          <p>Meu trabalho é com jovens, adultos e idosos que carregam algo que ainda não encontrou palavras. Que sentem que algo insiste — nos relacionamentos, no corpo, nos padrões que se repetem — mas não conseguem decifrar o quê.</p>
+
+          <p>Acredito que falar, em um espaço de escuta de verdade, move coisas que nenhuma outra ferramenta consegue. Não porque a psicanálise tenha respostas prontas — mas porque ela cria condições para que você mesmo possa encontrá-las.</p>
+
+          <!-- Altere quando a especialização for confirmada -->
+          <p>Atualmente em especialização em Clínica Psicanalítica no IPUB (Instituto de Psiquiatria da UFRJ), com vinculação a escola de psicanálise.</p>
+
+          <p>Atendo exclusivamente de forma online — você pode estar em qualquer cidade do Brasil, ou fora do país, e caminhamos juntos do mesmo jeito.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       FAIXA IMAGEM — caminho na floresta com luz no fim
+       Representa a jornada analítica: do escuro para a luz
+       Altere a citação abaixo conforme preferência
+  ============================================== -->
+  <div class="full-image-band">
+    <img
+      src="https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&w=1400"
+      alt="Caminho com luz ao fundo — a jornada analítica"
+      loading="lazy"
+    />
+    <div class="band-overlay"></div>
+    <div class="band-text">
+      <!-- CITAÇÃO DA FAIXA — altere livremente -->
+      <p class="band-quote">
+        "É através dessa fala sem amarras que conseguimos acessar<br>
+        o que está <em>escrito nas entrelinhas</em> da sua história."
+      </p>
+    </div>
+  </div>
+
+
+  <!-- =============================================
+       PSICANÁLISE — explicação da abordagem
+       Cards com imagens temáticas:
+       - Iceberg = o inconsciente
+       - Oceano = a profundidade / associação livre
+       - Floresta = a jornada / assumir o leme
+  ============================================== -->
+  <section id="psicanalise">
+    <div class="section-inner">
+
+      <div class="section-label fade-up">A abordagem</div>
+      <h2 class="section-title fade-up">O que é a Psicanálise?</h2>
+
+      <div class="psicanalise-intro fade-up">
+        <p class="psicanalise-intro-text">
+          Imagine que a nossa mente é como um iceberg. Aquilo que vemos na superfície — nossos pensamentos lógicos, nossas decisões do dia a dia — é apenas a pontinha de fora. Abaixo da água existe uma parte gigante e invisível: o Inconsciente.
+          <br><br>
+          É lá que guardamos nossas memórias esquecidas, nossos medos mais profundos e desejos que nem sabíamos que tínhamos. A Psicanálise é o mergulho que fazemos para entender o que acontece nessas profundezas — pois é essa parte submersa que guia a direção da nossa vida.
+          <br><br>
+          Essa prática surgiu em Viena com Sigmund Freud. Em suas pesquisas, ele descobriu algo revolucionário: quando não conseguimos transformar uma dor emocional em palavras, o nosso corpo "inventa" um jeito de colocar esse sofrimento para fora.
+        </p>
+
+        <!-- IMAGEM DO ICEBERG
+             Representa o inconsciente — parte visível x submersa
+             Altere o src para trocar a imagem -->
+        <div class="iceberg-wrap fade-up">
+          <img
+            src="https://images.pexels.com/photos/2499699/pexels-photo-2499699.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Iceberg — o consciente e o inconsciente"
+            loading="lazy"
+          />
+          <div class="iceberg-label">O inconsciente</div>
+        </div>
+      </div>
+
+      <!-- Cards de conceitos com imagem temática -->
+      <div class="conceitos-grid">
+
+        <!-- Card 1: O inconsciente — oceano profundo -->
+        <div class="conceito-card fade-up">
+          <!-- IMAGEM DO CARD 1 — oceano escuro e profundo -->
+          <img
+            class="conceito-img"
+            src="https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Oceano profundo — o inconsciente"
+            loading="lazy"
+          />
+          <div class="conceito-body">
+            <div class="conceito-numero">01</div>
+            <div class="conceito-titulo">O inconsciente</div>
+            <p class="conceito-texto">
+              Sabe quando você se pega repetindo o mesmo padrão sem entender o porquê? Ou quando percebe sintomas físicos sem causa aparente? Crises de angústia, insônia, sonhos esquisitos — tudo isso é o seu inconsciente agindo.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2: A fala livre — superfície d'água, reflexo -->
+        <div class="conceito-card fade-up" style="transition-delay: 0.1s;">
+          <!-- IMAGEM DO CARD 2 — água calma, reflexo, superfície -->
+          <img
+            class="conceito-img"
+            src="https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Superfície de água — a fala livre"
+            loading="lazy"
+          />
+          <div class="conceito-body">
+            <div class="conceito-numero">02</div>
+            <div class="conceito-titulo">A fala livre</div>
+            <p class="conceito-texto">
+              Na análise, usamos um método chamado associação livre. A orientação é simples: fale o que vier à cabeça, sem filtros. É através dessa fala sem amarras que conseguimos acessar o que está escrito nas entrelinhas da sua história.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3: Assumir o leme — caminho com luz -->
+        <div class="conceito-card fade-up" style="transition-delay: 0.2s;">
+          <!-- IMAGEM DO CARD 3 — caminho / luz ao fim -->
+          <img
+            class="conceito-img"
+            src="https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Caminho com luz — assumir o leme"
+            loading="lazy"
+          />
+          <div class="conceito-body">
+            <div class="conceito-numero">03</div>
+            <div class="conceito-titulo">Assumir o leme</div>
+            <p class="conceito-texto">
+              Com o tempo de análise, torna-se possível escutar suas próprias manifestações de outra forma. Em vez de ser apenas levado pela correnteza do inconsciente, você começa a assumir o leme da sua própria jornada.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-line"></div>
+
+
+  <!-- =============================================
+       ATENDIMENTO — como funciona
+  ============================================== -->
+  <section id="atendimento">
+    <div class="section-inner">
+
+      <div class="section-label fade-up">O processo</div>
+      <h2 class="section-title fade-up">Como funciona o atendimento</h2>
+
+      <div class="atendimento-grid">
+
+        <div class="atendimento-steps fade-up">
+
+          <div class="step">
+            <div class="step-num">01</div>
+            <div>
+              <div class="step-titulo">A sua parte</div>
+              <p class="step-texto">
+                A orientação é que você fale livremente sobre o que vier à cabeça, sem se preocupar com filtros ou julgamentos. Desde um sonho esquisito até um incômodo do dia a dia — tudo tem lugar aqui.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">02</div>
+            <div>
+              <div class="step-titulo">A minha parte</div>
+              <p class="step-texto">
+                Como analista, ofereço uma escuta especializada. Posso fazer perguntas, pontuar questões que talvez passem despercebidas e interpretar pontos da sua fala para que, juntos, possamos decifrar os sentidos ocultos do seu inconsciente.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">03</div>
+            <div>
+              <div class="step-titulo">A primeira sessão</div>
+              <p class="step-texto">
+                Nos conhecemos. Você me conta o que te traz aqui, explico como o tratamento funciona, combinamos horários, valores e compromissos — e decidimos juntos se seguiremos.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="atendimento-info fade-up">
+
+          <div class="info-card">
+            <div class="info-card-label">Formato</div>
+            <div class="info-card-value">100% Online</div>
+            <p class="info-card-desc">Você pode estar em qualquer lugar do Brasil — ou fora do país. Caminhamos juntos do mesmo jeito.</p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-label">Frequência</div>
+            <div class="info-card-value">Sessões semanais</div>
+            <p class="info-card-desc">O dia, o horário e a frequência são definidos após nossa primeira sessão, considerando sua disponibilidade e o que for combinado entre nós.</p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-label">Duração</div>
+            <div class="info-card-value">~50 minutos</div>
+            <p class="info-card-desc">Essa é uma estimativa. A duração real varia de acordo com o que você traz em cada sessão.</p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-label">Para quem</div>
+            <div class="info-card-value">Jovens, adultos e idosos</div>
+            <p class="info-card-desc">Atendimentos individuais para quem sente que algo insiste — e quer entender o quê.</p>
+          </div>
+
+          <!-- Altere o link do WhatsApp abaixo -->
+          <a href="https://wa.me/5521995485887?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20entrevista%20inicial" class="btn-cta" style="text-align:center; width:100%;" target="_blank">
+            Agendar entrevista inicial
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       FAIXA IMAGEM 2 — água calma com reflexo
+       Representa a superfície x profundidade, o processo analítico
+       Altere a citação conforme preferência
+  ============================================== -->
+  <div class="water-band">
+    <img
+      src="https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?auto=compress&cs=tinysrgb&w=1400"
+      alt="Superfície d'água — reflexo e profundidade"
+      loading="lazy"
+    />
+    <div class="band-overlay"></div>
+    <div class="band-text">
+      <div class="water-text-label">Psicanálise</div>
+      <!-- Altere a frase abaixo -->
+      <p class="water-headline">
+        "E aí vamos embarcar nessa viagem?"
+      </p>
+    </div>
+  </div>
+
+  <div class="divider-line"></div>
+
+
+  <!-- =============================================
+       FAQ — dúvidas frequentes
+       Adicione ou remova .faq-item conforme necessário
+  ============================================== -->
+  <section id="faq">
+    <div class="section-inner">
+      <div class="faq-grid">
+
+        <div class="faq-intro fade-up">
+          <div class="section-label">Dúvidas</div>
+          <h2 class="section-title">Perguntas frequentes</h2>
+          <p>Se tiver uma dúvida que não está aqui, entre em contato. Respondo com prazer.</p>
+        </div>
+
+        <div class="faq-list fade-up">
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Qual o valor das sessões?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">
+                De acordo com as resoluções do Conselho Federal de Psicologia, não é permitido ao psicólogo divulgar publicamente o valor de seus atendimentos. Se você se interessar, entre em contato para que possamos conversar sobre isso na entrevista inicial.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Com que frequência são as sessões?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">
+                Os atendimentos costumam ser semanais, mas o dia, o horário e a frequência só são definidos após nossa primeira sessão, considerando sua disponibilidade e o que for combinado entre nós.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Quanto tempo dura cada sessão?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">
+                As sessões têm uma duração média de 50 minutos. Mas isso é apenas uma estimativa — a duração real varia de acordo com o que você traz em cada encontro.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Nunca fiz terapia antes. Por onde começo?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">
+                Pelo começo. A primeira sessão é exatamente para isso: nos conhecermos, você me contar o que te traz aqui, entender como funciona o processo e decidirmos juntos se seguiremos. Não há nada que você precise saber ou preparar antes.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              O atendimento online funciona igual ao presencial?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">
+                Sim. O processo analítico se sustenta pela relação que construímos sessão a sessão — e essa relação independe do formato. Você pode estar em qualquer lugar do Brasil, ou fora do país, e caminhamos juntos do mesmo jeito.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-line"></div>
+
+
+  <!-- =============================================
+       CONTATO — seção final
+       Altere: WhatsApp, Instagram e e-mail
+       Imagem de fundo: oceano escuro (leveza + profundidade)
+  ============================================== -->
+  <section id="contato">
+    <div class="contato-bg"></div>
+
+    <div class="contato-inner">
+      <div class="section-label fade-up" style="justify-content: center;">Vamos começar</div>
+
+      <!-- TÍTULO DA SEÇÃO DE CONTATO — altere conforme desejar -->
+      <h2 class="contato-title fade-up">
+        Pronta para<br><em>embarcar?</em>
+      </h2>
+
+      <p class="contato-text fade-up">
+        O primeiro passo é agendar nossa entrevista inicial.<br>
+        Nela, nos conhecemos, você me conta o que te traz aqui e decidimos juntos se seguiremos.
+      </p>
+
+      <!-- Altere o link do WhatsApp abaixo -->
+      <a href="https://wa.me/5521995485887?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20entrevista%20inicial" class="btn-cta fade-up" style="font-size: 0.85rem; padding: 1.1rem 3rem;" target="_blank">
+        Agendar pelo WhatsApp
+      </a>
+
+      <div class="contato-links fade-up">
+        <!-- Altere o número do WhatsApp -->
+        <a href="https://wa.me/5521995485887" class="contato-link-item" target="_blank">
+          <span></span>WhatsApp · (21) 99548-5887
+        </a>
+        <!-- Altere o @ do Instagram -->
+        <a href="https://instagram.com/laismorandin" class="contato-link-item" target="_blank">
+          <span></span>Instagram · @laismorandin
+        </a>
+        <!-- Altere o e-mail -->
+        <a href="mailto:morandinlais@gmail.com" class="contato-link-item">
+          <span></span>morandinlais@gmail.com
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       FOOTER — altere nome, CRP e ano
+  ============================================== -->
+  <footer>
+    <div class="footer-logo">Laís Morandin</div>
+    <div>CRP XXXZZZWWW · Psicóloga Clínica · Psicanálise</div>
+    <div>© 2025 · Todos os direitos reservados</div>
+  </footer>
+
+
+  <script>
+    // FAQ accordion
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // Animações de scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
